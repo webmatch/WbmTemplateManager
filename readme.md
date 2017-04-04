@@ -2,6 +2,8 @@ WbmTemplateManager
 =====
 Extend or overwrite templates from out of the [Shopware](https://www.shopware.de) backend.
 
+![WbmTemplateManager](https://www.webmatch.de/wp-content/uploads/2017/04/templatemanager.png)
+
 Requirements
 -----
 * Shopware >= 5.2.0
