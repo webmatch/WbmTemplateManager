@@ -78,6 +78,7 @@ Ext.define('Shopware.apps.WbmTemplateManager.view.main.Detail', {
     {
         var me = this;
         return [
+            '->',
             {
                 text    : '{s name="reset"}Reset{/s}',
                 scope   : me,
