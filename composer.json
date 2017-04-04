@@ -1,7 +1,7 @@
 {
   "name": "webmatch/wbm-template-manager",
-  "keywords": ["database", "query", "shopware", "shopware-plugin"],
-  "description": "Database-Management plugin for Shopware",
+  "keywords": ["template", "smarty", "shopware", "shopware-plugin"],
+  "description": "Shopware-Plugin to extend or overwrite templates within the backend",
   "license": "GPL3",
   "type": "shopware-plugin",
   "extra": {
