@@ -3,12 +3,12 @@
     <label lang="de">Template Manager</label>
     <label lang="en">Template Manager</label>
 
-    <version>2.0.0</version>
+    <version>1.0.0</version>
     <link>http://www.webmatch.de</link>
     <author>Webmatch GmbH</author>
     <compatibility minVersion="5.2.0" />
 
-    <changelog version="2.0.0">
+    <changelog version="1.0.0">
         <changes lang="de">Veröffentlichung Open-Source</changes>
         <changes lang="en">Release Open-Source</changes>
     </changelog>
