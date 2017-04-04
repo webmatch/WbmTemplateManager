@@ -1,5 +1,8 @@
 WbmTemplateManager
 =====
+[![Scrutinizer](https://scrutinizer-ci.com/g/webmatch/WbmTemplateManager/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/webmatch/WbmTemplateManager/?branch=master)
+[![Travis CI](https://travis-ci.org/webmatch/WbmTemplateManager.svg?branch=master)](https://travis-ci.org/webmatch/WbmTemplateManager)
+
 Extend or overwrite templates from out of the [Shopware](https://www.shopware.de) backend.
 
 ![WbmTemplateManager](https://www.webmatch.de/wp-content/uploads/2017/04/templatemanager.png)
