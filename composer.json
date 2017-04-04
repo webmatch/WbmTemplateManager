@@ -1,0 +1,16 @@
+{
+  "name": "webmatch/wbm-template-manager",
+  "keywords": ["database", "query", "shopware", "shopware-plugin"],
+  "description": "Database-Management plugin for Shopware",
+  "license": "GPL3",
+  "type": "shopware-plugin",
+  "extra": {
+    "installer-name": "WbmTemplateManager"
+  },
+  "require": {
+    "composer/installers": "~1.0"
+  },
+  "scripts": {
+    "test": "phpunit -c tests"
+  }
+}
