@@ -23,6 +23,14 @@ Ext.define('Shopware.apps.WbmTemplateManager.model.Template', {
         {
             name: 'content',
             type: 'string'
+        },
+        {
+            name: 'oContent',
+            type: 'string'
+        },
+        {
+            name: 'custom',
+            type: 'int'
         }
     ],
     proxy: {

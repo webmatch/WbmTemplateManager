@@ -30,32 +30,63 @@ class Shopware_Controllers_Backend_WbmTemplateManager extends Shopware_Controlle
     public function listAction()
     {
         $templateRoot = $this->container->getParameter('wbm_template_manager.plugin_dir') . '/Resources/views/responsive/';
+        $baseTemplateRoot = $this->container->get('application')->DocPath() . 'themes/Frontend/Bare/';
         $name = $this->Request()->getParam('name', null);
 
-        $fileInfos = new \RecursiveIteratorIterator(
+        $baseTemplates = new \RecursiveIteratorIterator(
+            new \RecursiveDirectoryIterator($baseTemplateRoot)
+        );
+
+        $customTemplates = new \RecursiveIteratorIterator(
             new \RecursiveDirectoryIterator($templateRoot)
         );
 
         $data = [];
 
-        foreach($fileInfos as $pathName => $fileInfo) {
-            if (!$fileInfo->isFile()) {
+        foreach($baseTemplates as $pathName => $baseTemplate) {
+            if (!$baseTemplate->isFile()) {
+                continue;
+            }
+            if (pathinfo($pathName, PATHINFO_EXTENSION) != 'tpl') {
+                continue;
+            }
+
+            $namespace = str_replace($baseTemplateRoot, '', $pathName);
+            if (!empty($name) && $name !== $namespace) {
+                continue;
+            }
+
+            $data[$namespace] = [
+                'name'      => $namespace,
+                'content'   => "{extends file='parent:" . $namespace . "'}",
+                'oContent'  => file_get_contents($pathName),
+                'custom'    => 0
+            ];
+        }
+
+        foreach($customTemplates as $pathName => $customTemplate) {
+            if (!$customTemplate->isFile()) {
                 continue;
             }
             if (substr(basename($pathName), 0, 1) === '.') {
                 continue;
             }
 
-            $content = '';
-            if (!empty($name)) {
-                $content = file_get_contents($templateRoot . $name);
+            $namespace = str_replace($templateRoot, '', $pathName);
+            if (!empty($name) && $name !== $namespace) {
+                continue;
             }
 
-            $data[] = [
-                'name' => $name ? : str_replace($templateRoot, '', $pathName),
-                'content' => $content
+            $data[$namespace] = [
+                'name'      => $namespace,
+                'content'   => file_get_contents($pathName),
+                'oContent'  => isset($data[$namespace]['oContent']) ? $data[$namespace]['oContent'] : '',
+                'custom'    => 1
             ];
         }
+
+        ksort($data);
+        $data = array_values($data);
 
         $this->View()->assign(
             array('success' => true, 'data' => $data)

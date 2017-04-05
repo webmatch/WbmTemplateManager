@@ -5,7 +5,14 @@ WbmTemplateManager
 
 Extend or overwrite templates from out of the [Shopware](https://www.shopware.de) backend.
 
-![WbmTemplateManager](https://www.webmatch.de/wp-content/uploads/2017/04/templatemanager.png)
+![WbmTemplateManager](https://www.webmatch.de/wp-content/uploads/2017/04/template_manager.jpg)
+
+The plugin offers the following features:
+
+* Default template structure based on the Bare theme
+* Preview syntax of the base templates (Bare)
+* Extend base templates or create entirely new templates
+* Newly created templates can be found within plugin directory in `/Resources/views/responsive/frontend/`
 
 Requirements
 -----

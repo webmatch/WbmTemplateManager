@@ -47,11 +47,18 @@ Ext.define('Shopware.apps.WbmTemplateManager.view.main.List', {
             {
                 header: '{s name="nameColumnHeader"}Name{/s}',
                 dataIndex:'name',
-                flex:1
+                flex:1,
+                renderer:function(value, metaData, record) {
+                    if (record.get('custom') != 1) {
+                        return '<span style="color:#999">' + value + '</span>';
+                    } else {
+                        return value;
+                    }
+                }
             },
             {
                 xtype:'actioncolumn',
-                width:50,
+                width:30,
                 items:me.getActionColumnItems()
             }
         ];
@@ -75,6 +82,11 @@ Ext.define('Shopware.apps.WbmTemplateManager.view.main.List', {
                 iconCls:'x-action-col-icon sprite-minus-circle-frame',
                 cls:'duplicateColumn',
                 tooltip:'{s name="delete"}Löschen{/s}',
+                getClass: function(value, metadata, record) {
+                    if (record.get("custom") != 1) {
+                        return 'x-hidden';
+                    }
+                },
                 handler:function (view, rowIndex, colIndex, item) {
                     me.fireEvent('deleteTemplate', view, rowIndex, colIndex, item);
                 }

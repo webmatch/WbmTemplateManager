@@ -38,7 +38,7 @@ Ext.define('Shopware.apps.WbmTemplateManager.view.main.Window', {
                     {
                         xtype: 'template-manager-list',
                         store: me.mainStore,
-                        width: 200
+                        width: 250
                     },
                     {
                         xtype: 'template-manager-detail',

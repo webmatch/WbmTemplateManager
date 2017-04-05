@@ -25,6 +25,10 @@ Ext.define('Shopware.apps.WbmTemplateManager.view.main.Detail', {
     region      : 'center',
     defaultType : 'textfield',
     autoScroll  : true,
+    layout      : {
+        type: 'vbox',
+        align: 'stretch'
+    },
     items : [],
     initComponent: function() {
         var me = this;
@@ -40,20 +44,32 @@ Ext.define('Shopware.apps.WbmTemplateManager.view.main.Detail', {
         ];
     
         me.editorField = Ext.create('Shopware.form.field.CodeMirror', {
-            fieldLabel: '{s name="smartyFieldLabel"}Smarty{/s}',
+            title: '{s name="smartyFieldLabel"}Extension{/s}',
             xtype: 'codemirrorfield',
             mode: 'smarty',
-            labelAlign: 'top',
             name: 'content',
             allowBlank: true
         });
 
-        me.on('resize', function(cmp, width, height) {
-            me.resizeEditor(cmp, width, height)
+        me.editorField2 = Ext.create('Shopware.form.field.CodeMirror', {
+            title: '{s name="smarty2FieldLabel"}Base{/s}',
+            xtype: 'codemirrorfield',
+            readOnly: true,
+            mode: 'smarty',
+            name: 'oContent',
+            allowBlank: true
         });
 
-        me.editorField.on('editorready', function(editorField, editor) {
-           me.resizeEditor(me, me.getWidth(), me.getHeight());
+        me.on('resize', function(cmp, width, height) {
+            me.resizeEditor(cmp, cmp.editorField, width, height);
+            me.resizeEditor(cmp, cmp.editorField2, width, height);
+        });
+
+        me.editorField.on('editorready', function() {
+            me.resizeEditor(me, me.editorField, me.getWidth(), me.getHeight());
+        });
+        me.editorField2.on('editorready', function() {
+            me.resizeEditor(me, me.editorField2, me.getWidth(), me.getHeight());
         });
         
         me.items = me.getItems();
@@ -71,7 +87,14 @@ Ext.define('Shopware.apps.WbmTemplateManager.view.main.Detail', {
                 name: 'name',
                 allowBlank: false
             },
-            me.editorField
+            {
+                xtype: 'tabpanel',
+                flex: 1,
+                items: [
+                    me.editorField,
+                    me.editorField2
+                ]
+            }
         ];
     },
     getButtons : function()
@@ -93,18 +116,17 @@ Ext.define('Shopware.apps.WbmTemplateManager.view.main.Detail', {
             }
         ];
     },
-    resizeEditor : function(cmp, width, height) {
-        var editorField = cmp.editorField,
-            editor = editorField.editor,
+    resizeEditor : function(cmp, editorField, width, height) {
+        var editor = editorField.editor,
             scroller;
-console.log(editorField);
+
         if(!editor || !editor.hasOwnProperty('display')) {
             return false;
         }
 
         scroller = editor.display.scroller;
 
-        width -= cmp.bodyPadding * 2;
+        width -= cmp.bodyPadding * 2 + 5;
         // We need to remove the bodyPadding, the padding on the field itself and the scrollbars
         height -= cmp.bodyPadding * 5 + 90;
 
