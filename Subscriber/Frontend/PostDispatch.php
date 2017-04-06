@@ -37,7 +37,8 @@ class PostDispatch implements SubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            'Enlight_Controller_Action_PostDispatch_Frontend' => 'onPostDispatch'
+            'Enlight_Controller_Action_PostDispatch_Frontend' => 'onPostDispatch',
+            'Enlight_Controller_Action_PostDispatch_Widgets' => 'onPostDispatch'
         ];
     }
 
