@@ -44,15 +44,13 @@ class Shopware_Controllers_Backend_WbmTemplateManager extends Shopware_Controlle
         $data = [];
 
         foreach($baseTemplates as $pathName => $baseTemplate) {
-            if (!$baseTemplate->isFile()) {
-                continue;
-            }
-            if (pathinfo($pathName, PATHINFO_EXTENSION) != 'tpl') {
-                continue;
-            }
-
             $namespace = str_replace($baseTemplateRoot, '', $pathName);
-            if (!empty($name) && $name !== $namespace) {
+
+            if (
+                !$baseTemplate->isFile() ||
+                pathinfo($pathName, PATHINFO_EXTENSION) != 'tpl' ||
+                (!empty($name) && $name !== $namespace)
+            ) {
                 continue;
             }
 
@@ -65,15 +63,13 @@ class Shopware_Controllers_Backend_WbmTemplateManager extends Shopware_Controlle
         }
 
         foreach($customTemplates as $pathName => $customTemplate) {
-            if (!$customTemplate->isFile()) {
-                continue;
-            }
-            if (substr(basename($pathName), 0, 1) === '.') {
-                continue;
-            }
-
             $namespace = str_replace($templateRoot, '', $pathName);
-            if (!empty($name) && $name !== $namespace) {
+
+            if (
+                !$customTemplate->isFile() ||
+                substr(basename($pathName), 0, 1) === '.' ||
+                (!empty($name) && $name !== $namespace)
+            ) {
                 continue;
             }
 

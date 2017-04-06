@@ -93,7 +93,16 @@ Ext.define('Shopware.apps.WbmTemplateManager.view.main.Detail', {
                 items: [
                     me.editorField,
                     me.editorField2
-                ]
+                ],
+                listeners: {
+                    tabchange: function() {
+                        if(!me.editorField.editor || !me.editorField2.editor) {
+                            return;
+                        }
+                        me.editorField.editor.refresh();
+                        me.editorField2.editor.refresh();
+                    }
+                }
             }
         ];
     },
