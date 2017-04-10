@@ -12,7 +12,7 @@ The plugin offers the following features:
 * Default template structure based on the Bare theme
 * Preview syntax of the base templates (Bare)
 * Extend base templates or create entirely new templates
-* Newly created templates can be found within plugin directory in `/Resources/views/responsive/frontend/`
+* Newly created templates can be found within plugin directory in `/Resources/views/responsive/`
 
 Requirements
 -----
@@ -26,6 +26,8 @@ Clone this repository into a folder **WbmTemplateManager** within the **custom/p
 * Activate the plugin and when prompted allow for the clearing of the listed caches.
 * Reload the backend to complete the installation.
 
+**Please make sure that the directory `/custom/plugins/WbmTemplateManager/Resources/views/responsive/` has write permissions.**
+
 ## Install with composer
 * Change to your root Installation of shopware
-* Run command `composer require webmatch/wbm-template-manager` and install and activate plugin with Plugin Manager 
+* Run command `composer require webmatch/wbm-template-manager` and install and activate plugin with Plugin Manager
